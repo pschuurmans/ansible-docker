@@ -4,11 +4,11 @@
 
   roles:
     - install_dependencies
-    - role: deploy_app
+    - role: deploy_angular_app
       vars:
          app: 'angular1'
          app_port: 81
-    - role: deploy_app
+    - role: deploy_angular_app
       vars:
          app: 'angular2'
          app_port: 82
