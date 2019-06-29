@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: yes
+
+  roles:
+          - install_dependencies
+          - deploy_angular1
+          - deploy_angular2
