@@ -1,17 +1,17 @@
 ---
 - name: Copy folder to target 
   synchronize:
-          src: ../angular1
+          src: ../{{ app }}
           dest: /tmp/ansible-docker
 
 - name: Copy Dockerfile
-  template: src=Dockerfile dest=/tmp/ansible-docker/angular1/Dockerfile
+  template: src=Dockerfile dest=/tmp/ansible-docker/{{ app }}/Dockerfile
 
 - name: Build Docker image from Dockerfile
   docker_image:
-          name: angular1:latest
+          name: "{{ app }}:latest"
           build:
-                  path: /tmp/ansible-docker/angular1
+                  path: /tmp/ansible-docker/{{ app }}
                   pull: true
           source: build
           state: present
@@ -19,9 +19,9 @@
 
 - name: Running the container
   docker_container:
-          name: angular1
+          name: "{{ app }}"
           state: started
-          image: angular1:latest
+          image: "{{ app }}:latest"
           ports:
-                  - "{{ a1_port }}:80"
+                  - "{{ app_port }}:80"
 
