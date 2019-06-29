@@ -1,0 +1,10 @@
+---
+- name: Install pip
+  apt:
+          name: python-pip
+          update_cache: yes
+          state: present
+
+- name: install docker
+  pip: name=docker
+
